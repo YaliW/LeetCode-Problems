@@ -1,0 +1,35 @@
+/* Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.*/
+
+public class Solution {
+    public String[] findWords(String[] words) {
+        String[] strs = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"};
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i=0; i<strs.length; i++){
+            for (char c : strs[i].toCharArray()){
+                map.put(c, i);
+            }
+        }
+        
+        List<String> mappedOutput = new LinkedList<>();
+        for(int i=0; i< words.length; i++){
+            if(words[i].equals("")){
+                mappedOutput.add(words[i]);
+                continue;
+                
+            }
+            int index = map.get(words[i].toUpperCase().charAt(0));
+            for ( char c : words[i].toUpperCase().toCharArray() ){
+                if (map.get(c) != index){
+                    index = -1;
+                    break;
+                }
+            }
+            if (index != -1){
+                mappedOutput.add(words[i]);
+            }
+        }
+        
+        return mappedOutput.toArray(new String[0]);
+        
+    }
+}
