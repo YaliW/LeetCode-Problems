@@ -1,0 +1,25 @@
+/* Given a sorted linked list, delete all duplicates such that each element appear only once.*/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode list = head;
+        while(list != null && list.next != null){
+            if(list.val == list.next.val){
+                list.next = list.next.next;
+            }
+            else{
+                list = list.next;
+            }
+        }
+        return head;
+        
+    }
+}
