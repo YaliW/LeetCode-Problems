@@ -23,3 +23,26 @@ public class Solution {
         else return null;
     }
 }
+
+//use parent pointer
+public class Solution {
+    private ArrayList<TreeNode> getAncestor (TreeNode node) {
+        arrayList<TreeNode> list = new ArrayList<TreeNode>();
+        while(node != null) {
+            list.add(node);
+            node = node.parent;
+        }
+        return list;
+    }   
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        ArrayList<TreeNode> list1 = getAncestor(p);
+        arrayList<TreeNode> list2 = getAncestor(q);
+        int i, j;
+        for(i = list1.size()-1, j = list2.size()-1; i >= 0 && j >= 0; i--, j--) {
+            if(list1.get(i) != list2.get(j)) {
+                return list1.get(i).parent;
+            }
+        }
+        return list1.get(i+1);
+    }
+}
